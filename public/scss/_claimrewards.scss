@@ -1,0 +1,67 @@
+.ClaimRewards-Wrapper{
+    padding-bottom: 70px;
+    .game-card-section{
+        padding: 70px 0;
+        max-width: 343px;
+        margin: 0 auto;
+        .games-card-wrapper{
+            padding: 0;
+            .game-card{
+                justify-content: center;
+                padding: 41px 0 61px 0;
+                .card-title{
+                    .amount{
+                        @include Orbitron;
+                        font-size: 22px;
+                        line-height: 1.2;
+                        font-weight: 700;
+                       color: $link-color;
+                       margin-left: 16px;
+                    }
+                  
+                }
+            }
+            .card-button{
+                min-width: 144px;
+                width: auto;
+                float: left;
+                left: 50%;
+                transform: translatex(-50%);
+                .btn{
+                    font-weight: 700;
+                }
+            }
+            &:before{
+                content: "";
+                width: 19px;
+                height: 14px;
+                background-color:$primary-btn-color;
+                @include pos(ab,-5px,null,null,-7px);
+                    transform: rotate(-45deg);
+            }
+        }
+    }
+    // Claim-history
+    
+    .claim-history{
+        h5{
+            font-weight: 400;
+        }
+        .claim-list{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 77px 0 32px;
+            margin: 17px 0 8px 0;
+        }
+        .game-players-details{
+            padding: 16px 42px 16px 32px;
+            .date{
+                font-weight: 500;
+                font-size: 16px;
+                @include jura;
+                text-align: right;
+            }
+        }
+    }
+}

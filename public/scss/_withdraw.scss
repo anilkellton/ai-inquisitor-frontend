@@ -1,0 +1,17 @@
+.withdraw-Wrapper{
+    .content{
+        padding: 108px 0 241px 0;
+        .title{
+            color: $green-color;
+            font-weight: 500;
+            line-height: 1.25;
+            margin-bottom: 49px;
+        }
+           p{
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.25;
+            background: url("../images/square.png") center right no-repeat;
+        }
+    }
+}

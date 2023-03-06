@@ -1,0 +1,132 @@
+footer{
+    background-color: $gray-color-value;
+    padding: 32px 15px 20px;
+    margin: 0 0;
+}
+
+.footer-top{
+    .container{
+        max-width: 1310px;
+        margin:0 auto;
+    }
+    .logo{
+        margin-bottom: 25px;
+    }
+    h3{
+        font-size: 24px;
+        line-height: 30px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        text-decoration: underline;
+        a{
+            color:$primary-color;
+            text-decoration: underline;
+        }
+    }
+    p{
+        color:$footer-grey-color;
+        margin-bottom: 15px;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 600;
+        &:last-of-type{
+            margin-bottom: 0;
+        }
+    }    
+    .link{
+        margin-bottom: 13px;
+        a{
+            color:$footer-grey-color;
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 20px;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+    }
+    .box{
+        margin-bottom: 40px;
+    }
+    .social-icons {
+		display: flex;
+        justify-content: space-between;
+        max-width: 375px;
+		a {
+			width: 33px;
+			height: 33px;
+			background-color: $primary-color;
+			border-radius: 50%;
+			font-size: 0;
+			@include pos(re);
+			transition: all 0.5s;
+			&:hover {
+				opacity: 0.8;
+			}
+			&:after {
+				@include fa;
+				@include pos(ab, 50%, null, null, 50%);
+				transform: translate(-50%, -50%);
+				color: $gray-color-value;
+				font-size: 24px;
+				content: "\f099";
+				transition: all 0.5s;
+			}
+			&.twitter {
+				&:after {
+					content: "\f099";
+				}
+			}
+			&.facebook {
+				&:after {
+					content: "\f09a";
+                    top:66%;
+                    font-size: 32px;
+				}
+			}
+			&.instagram {
+				&:after {
+					content: "\f16d";
+				}
+			}
+			&.linkedin {
+				&:after {
+					content: "\f08c";
+				}
+			}
+			&.youtube {
+				&:after {
+					content: "\f16a";
+				}
+			}
+		}
+	}
+}
+.footer-bottom{
+    text-align: center;    
+    .container{
+        max-width: 1214px;
+        margin:0 auto;
+        padding-top:16px;
+        border-top: 1px solid $dark-gray-color;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 600;
+        color:$footer-grey-color;
+    }
+}
+
+
+@media all and (min-width:1025px){
+    .footer-top{
+        .flex-box{
+            display: flex;
+            justify-content: space-between;
+            .box{
+                &:first-child{
+                    max-width: 35%;
+                    padding-right: 40px;
+                }
+            }
+        }
+    }
+}

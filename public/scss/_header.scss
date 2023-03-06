@@ -1,0 +1,88 @@
+
+    .header-nav{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 16px;
+        background-color: $white-gray;
+        .nav-links{ 
+            display: flex;
+            align-items: center;
+            li{
+                list-style: none;
+                margin-right: 38px;
+            }
+            .active{
+                position: relative;
+            }
+            .notifection{
+                width: 6px;
+                height: 6px;
+                background-color: $link-color;
+                border-radius: 50%;
+                position: absolute;
+                left: -6px;
+                top: -6px;
+            }
+            
+        }
+        .menu-bar{
+            display: flex;
+            align-items: center;
+            gap:0 20px;
+            
+            a{
+                font-size: 18px;
+                line-height: 1.2;
+                text-decoration: none;
+                color: $primary-color;
+                color: #ffff;
+                font-weight: 700;
+            }
+            select{
+                font-size: 18px;
+                line-height: 1.2;
+                color: $dark-gray-color;
+                width: 100px;
+                -webkit-appearance: none;
+	             cursor: pointer;
+                 outline: none;
+                 border: none;
+            }
+            }
+        }
+        .side-bar-menu{
+            position: absolute;
+            top: 70px;
+            z-index: 111;
+            background-color:$white-gray;
+            width: 80%;
+            left: 0;
+            padding: 0 20px;
+            height: 100%;
+
+        li{
+            list-style: none;
+        }
+            a{  
+                cursor: pointer;
+                font-size: 24px;
+                font-weight: 600;
+                line-height: 1.25;
+                color:$primary-color;
+                text-decoration: none;
+                padding: 5px 0;
+                display: block;
+            }
+            .logout{
+                display: flex;
+                align-items: center;
+                gap: 13px;
+                font-size: 18px;
+                font-weight: 700;
+            }
+        
+        }
+
+       
+    

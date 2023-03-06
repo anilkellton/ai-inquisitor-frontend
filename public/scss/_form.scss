@@ -1,0 +1,324 @@
+.formWrapper {
+	.title{
+		margin-bottom: 5px;
+	}	
+	.subTitle{
+		font-size: 14px;
+		line-height: 16px;
+		margin-bottom: 60px;
+	}
+	.subTitlegray{
+		font-size: 14px;
+		line-height: 16px;
+		color:$label-grey-color;
+	}
+}
+.backTitle{
+	display: flex;
+	align-items: center;
+	.back{
+		cursor: pointer;
+	}
+	img{
+		margin-right: 20px;
+	}
+}
+.inputWrap{
+	@include pos(re);	
+	overflow: hidden;
+	&:before{
+		content: "";
+		width: 12px;
+		height: 12px;
+		background-color: $primary-bg;
+		border-bottom: 1px solid $primary-color;
+		@include pos(ab,-6px,null,null,-6px);
+		transform: rotate(-45deg);
+	}
+	&:after{
+		content: "";
+		width: 12px;
+		height: 12px;
+		background-color: $primary-bg;
+		border-top: 1px solid $primary-color;
+		@include pos(ab,null,-6px,-6px,null);
+		transform: rotate(-45deg);
+	}
+}
+// input css
+.formControl{
+	width: 100%;
+	height: 44px;
+	background-color: $primary-bg;
+	border:1px solid $primary-color;
+	padding: 0 16px;
+	color:$primary-color;
+	font-size: 16px;
+	@include jura;
+	appearance: none;
+	&:-webkit-autofill {
+		background-color: $primary-bg !important;
+	}
+	&:autofill {
+		background-color: $primary-bg !important;
+	}
+	&:-moz-autofill, &:-moz-autofill-preview {
+		filter: none !important; 
+	  }
+}
+label{
+	font-size: 14px;
+	line-height: 1.3;
+	margin-bottom: 8px;
+	font-weight: 600;
+	color:$label-color;
+	display: inline-block;
+}
+select,input[type="date"]{
+	&.formControl{
+		padding: 0 16px 0 12px;
+		color:$placeholder-color !important;
+		text-align: left !important;
+		&:focus,&.focused{
+			color: $primary-color !important;
+		}
+	}
+}
+input[type="date"]{
+	&.formControl{
+		appearance: none;
+		-webkit-appearance: none;
+		background: url("../images/calender.png") no-repeat;
+		background-position: calc(100% - 10px) center;
+	}
+}
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+select{
+	background: url("../images/down.svg") no-repeat;
+	background-position: calc(100% - 10px) center;
+	padding: 7px 10px 7px 5px;	
+	@include jura;
+	option{
+		@include jura;
+		cursor: pointer;
+	}
+}
+.forget{
+	color:$primary-color;
+	font-size: 14px;
+}
+.noAcccount{
+	text-align: center;
+	font-size: 16px;
+	line-height: 21px;
+	font-weight:600;
+	a{
+		font-size: 18px;
+		line-height: 21px;
+		margin-left: 16px;
+		text-transform: uppercase;
+	}
+}
+.forgetPass{
+	margin-top:32px;
+}
+.btn{
+	padding: 0 15px;
+	width: 100%;
+	height: 44px;
+	@include pos(re);	
+	overflow: hidden;
+	border:none;
+	color:$primary-btn-color;
+	font-size:18px;
+	text-transform: uppercase;
+	@include jura;
+	cursor: pointer;
+	font-weight: 600;
+	&:before{
+		content: "";
+		width: 12px;
+		height: 12px;
+		background-color: $primary-bg;
+		@include pos(ab,-6px,null,null,-6px);
+		transform: rotate(-45deg);
+	}
+	&:after{
+		content: "";
+		width: 12px;
+		height: 12px;
+		background-color: $primary-bg;
+		@include pos(ab,null,-6px,-6px,null);
+		transform: rotate(-45deg);
+	}
+	&.disable-btn{
+		background-color: $disable-btn-bg !important;
+	}
+	&.primary-btn{
+		background-color: $primary-btn-bg;
+	}
+	&.black-btn{
+		background-color: $dark-gray-bg;
+		padding: 0;
+	}
+}
+
+// checkbox css
+.Checkbox {
+	display: block;
+	position: relative;	
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	width:24px;
+	height: 24px;
+	input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+		&:checked {
+			~ {
+				.checkmark {					
+					&:after {
+						display: block;
+					}
+				}
+			}
+		}
+	}
+	.checkmark {
+		&:after {
+			left: 8px;
+			top: 4px;
+			width: 4px;
+			height: 10px;
+			border: solid $link-color;
+			border-width: 0 2px 2px 0;
+			transform: rotate(45deg);
+		}
+	}
+}
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 24px;
+	width: 24px;
+	background-color: none;
+	border:1px solid $primary-color;
+	&:after {
+		content: "";
+		position: absolute;
+		display: none;
+	}
+}
+.checkBoxWrap{
+	.term{
+		font-size: 14px;
+		line-height: 21px;
+		letter-spacing: 0.02em;
+		color:$label-grey-color;
+		margin-left: 12px;
+	}
+	a{
+		color:$link-color;
+	}
+}
+
+.CheckedBox{
+	margin-bottom: 15px;
+	.vcenter{
+		margin-bottom: 12px;
+		color:$dark-gray-color;
+		font-size: 12px;
+		line-height: 14px;
+		img{
+			margin-right: 8px;
+			opacity: .2;
+		}
+		&.active{
+			color: $primary-color;
+			img{
+				opacity: 1;
+			}
+		}
+		
+	}
+}
+.eye-icon{
+	color:#d2d4d7;
+	@include pos(ab,50%,10px,null,null);
+	transform: translateY(-50%);
+}
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+.errorText{
+	display: flex;
+	text-align: left;
+	font-size: 14px;
+	color:$primary-color;
+	margin:-16px 0 16px;
+}
+.login-with-social{
+	.title{
+		display: block;
+		margin-bottom: 32px;
+	}
+	.tab-wrap{
+		justify-content: space-between;
+		background-color: transparent;
+		.tab-link{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 7px;
+			width: 45%;
+			border: 1px solid $gray-border;
+			&:before{
+			    content: "";
+                width: 12px;
+               height: 12px;
+  			  border-bottom: 1px solid $gray-border;
+			  background-color: #1D1E22;;
+  			  position: absolute;
+  			  top: -7px;
+  			  left: -6px;
+   			 transform: rotate(-45deg);
+   			 z-index: 0;
+			}
+			&:after{
+				content: "";
+   				 width: 12px;
+   				 height: 12px;
+				 background-color: #1D1E22;;
+   				 position: absolute;
+   				 right: -6px;
+   				 bottom: -7px;
+  				  transform: rotate(-45deg);
+					border-top: 1px solid $gray-border;
+			}
+		}
+	}
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+	-moz-appearance: textfield;
+  }
+
+// input:-internal-autofill-selected {
+// 	background-color:$primary-bg !important;
+// 	color:$placeholder-color;
+// 	font-size: 16px;
+// }

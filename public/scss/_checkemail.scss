@@ -1,0 +1,20 @@
+.check-email{
+    padding-bottom: 70px;
+    .content{
+        p{
+            font-size: 16px;
+            line-height: 1.25;
+            padding: 16px 0 32px;
+            a{
+                color: $primary-color;
+                display: block;
+                text-decoration: none;
+            }
+        }
+    }
+    .Login-action{
+       .btn{
+        color: $primary-btn-bg;
+       }
+    }
+}

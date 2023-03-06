@@ -1,0 +1,177 @@
+.leaderboard-game-wrapper{
+    .leaderboard-game-card{
+        width: 118px;
+        @include pos(re,);
+        .leaderboard-game-time-btn{
+            background-color: transparent;
+            border: none;
+            width: 107px;
+            height: 21px;
+            @include pos(re,);
+            cursor: pointer;
+            bottom: 24px;
+            right: -11px;
+            .game-time{
+                @include pos(ab,);
+                width: 100%;
+                top: 50%;
+                left: 50%;
+                font-size: 10px;
+                transform: translate(-50%,-50%);
+            }
+        }
+    }
+}
+.trophi-time-content{
+    display: flex;
+    align-items: center;
+    padding-top: 17px;
+    column-gap: 12px;
+    .trophi-num{
+        font-weight: 700 !important;
+        color: $link-color;
+        .trophi img{
+            margin-right: 4px;
+        }
+    }
+}
+    // game-player
+    .game-players-title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+       padding: 0px 13px 0px 24px;
+        margin:26px 0 9px 0; 
+        span{
+                font-size: 12px;
+                font-weight: 700;
+                line-height: 1.25;
+        }
+        .palyer-list{
+            font-weight: 700;
+            font-size: 12px;
+            line-height: 1.2;
+            width: calc(100% / 3);
+            display: flex;
+            align-items: center;
+
+            .number{
+               min-width: 80px;
+            } 
+        }
+        .point{
+            width: calc(100% / 3);
+           text-align: center;
+        }
+        .prize{
+            width: calc(100% / 3);
+            text-align: right;
+        }
+    }
+  .game-player-list{
+    .game-players-details{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: $gray-color-value;
+        padding: 9px 13px 9px 24px;
+        @include pos(re,);
+        margin-bottom: 7px;
+        &:before{
+            content: "";
+            width: 12px;
+            height: 12px;
+            background-color: $primary-bg;
+            @include pos(ab,-6px,null,null,-6px);
+            transform: rotate(-45deg);
+          
+        }
+        &:after{
+            content: "";
+            width: 12px;
+            height: 12px;
+            background-color: $primary-bg;
+            @include pos(ab,null,-6px,-6px,null);
+            transform: rotate(-45deg);
+        }
+        &.active{ 
+			background-color: transparent;
+			border:1px solid $link-color;
+			z-index: 0;
+            &:before{
+                content: "";
+                width: 12px;
+                height: 12px;
+                background-color: $primary-bg;
+                border-bottom: 1px solid $link-color;
+                @include pos(ab,-7px,null,null,-7px);
+                transform: rotate(-45deg);
+            }
+            &:after{
+                content: "";
+                width: 12px;
+                height: 12px;
+                background-color: $primary-bg;
+                border-top: 1px solid $link-color;
+                @include pos(ab,null,-7px,-7px,null);
+                transform: rotate(-45deg);
+            }
+        }
+        .player-number{
+            display: flex;
+            align-items: center;
+            width: calc(100% / 3);  
+            .num{
+                @include Orbitron;
+                font-size: 16px;
+                line-height: 1.25;
+                font-weight: 500;
+                margin-right: 29px;
+                min-width: 20px;
+            }
+            .player-name{
+                display: flex;
+                align-items: center;
+                font-size: 16px;
+                line-height: 1.2;
+                font-weight: 500;
+                img{
+                    margin-right: 8px;
+                    width: 30px;
+                    height: 30px;
+                    border: 2px solid $primary-color ;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    object-fit: cover
+                    
+                }
+            }
+        }
+        .point{
+            @include Orbitron;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 2.5;
+            width: calc(100% / 3);
+            text-align: center;
+        }
+        .prize{
+            width: calc(100% / 3);
+            text-align: right;
+        }
+    }
+  }
+  .table-wrapper{
+    min-width: 640px;
+}
+
+  @media only screen and (min-width:640px) {
+      #main-container{
+        .infinite-scroll-component__outerdiv{
+            .infinite-scroll-component {
+                overflow: unset !important; 
+            }
+        }
+    }
+    
+  }

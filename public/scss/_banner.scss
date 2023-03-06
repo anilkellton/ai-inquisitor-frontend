@@ -1,0 +1,116 @@
+
+  .banner-section { 
+    background: url(../images/banner-background.png)center center no-repeat;
+    padding: 75px 15px;
+    margin: -20px -15px 0;
+    background-size: cover;
+    .banner-card {
+        flex: 0 0 calc(33.33% - 24px);
+        .card {
+            @include pos(re);
+            border-bottom: 1px solid  $primary-color ;
+            img{
+                vertical-align: top;
+                width: 100%;
+            object-fit: cover;
+            }
+            .card-button {
+                @include pos(ab, -22px, null, null, 53px);
+                .banner-btn{
+                    border: none;
+                    background: transparent;
+                }
+            }
+            .white-btn{
+                background-color:  $primary-color ;
+                @include pos(ab,null, 0px, -13px, null);
+                height: 12px;
+                width: 253px;
+                &:before{
+                    @include pos(ab,5px, -4px, null, null);
+                    width: 17px;
+                    transform: rotate(45deg);
+                }
+                &:after{
+                    width: 17px;
+                    bottom: -4px;
+                }
+            }   
+        }
+    }
+    .entrance-card{
+        margin-right: 0;
+        .card-image{
+            img{
+                height: 500px;
+                overflow: hidden;                
+            }
+        }       
+    }
+    .banner-description {
+        flex: 0 0 421px;
+        margin: 0;
+        .banner-title {
+            font-size: 48px;
+            line-height: 1.1;
+            text-transform: uppercase;
+            text-align: right;
+            font-weight: 500;
+            .white-line {
+                width: 208px;
+                height: 8px;
+                background-color: $primary-color;
+                margin-right: 12px;
+                display: inline-flex;
+            }
+        }
+        .banner-content {
+            font-size: 16px;
+            line-height: 2;
+            font-weight: 500;
+        }
+    }
+    .lobby-card {
+        display: none;
+        .banner-notifection {
+            @include Orbitron;
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.2;
+            color: $primary-btn-bg;
+            letter-spacing: 3.2px;
+            margin-bottom: 96px;
+            .dot {
+                width: 8px;
+                height: 8px;
+                background-color: $primary-btn-bg;
+                display: inline-block;
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
+// start ofresponsive
+
+@media(min-width:1024px){
+    .banner-section{
+        .banner-container{
+            max-width: 1253px;
+            margin: 0 auto;
+            display: flex;
+        padding-bottom: 147px;
+        justify-content: space-between;
+          
+        }
+       .lobby-card{
+           display: block;
+       }
+       .banner-description{
+            .banner-title{
+                font-size: 96px;
+            }
+       }     
+    }
+}

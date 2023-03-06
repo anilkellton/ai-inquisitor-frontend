@@ -1,0 +1,106 @@
+.hed-title{
+   text-align: center;
+    .title{
+        display: inline-block;
+        padding-right: 45px;
+        font-size: 32px;
+        line-height: 1.35;
+        font-weight: 600;
+        background: url("../images/square.png") center right no-repeat;
+    }
+    .content{
+        font-size: 16px;
+        line-height: 1.3;
+        font-weight: 600;
+        margin-bottom: 53px;
+    }
+}
+.OurMission-section{
+    padding-top: 32px;
+    .ourmission-card-wrapper{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        gap: 32px;
+        .card{
+            @include pos(re);
+           &:before{
+               content: '';
+               border-right: 4px solid $primary-color;
+               border-bottom: 4px solid $primary-color;
+               width:95px;
+               height: 105px;
+               @include pos(ab,null,0,0,null);
+               z-index: 9;
+           }
+           &:after{
+               z-index: 9;
+           }
+            img{
+                width: 100%;
+                object-fit: cover;
+                vertical-align: top;
+                overflow: hidden;
+            }
+            .card-content{
+                display: flex;
+                width: 100%;
+                align-items: center;
+                background-color:rgba(48, 44, 44, 0.39);
+                @include pos(ab);
+                bottom: 0;
+                padding: 21px 50px 30px 38px;
+                gap: 30px;
+                p{
+                    font-size: 16px;
+                    line-height: 1.3;
+                    font-weight: 600;
+
+                }
+            }
+        }
+        .gaming-experiences{
+            @include pos(re);
+            &:after{
+                content: '';
+                border-bottom: 4px solid $primary-color;
+                border-left: 4px solid $primary-color;
+                width:95px;
+                height: 105px;
+                @include pos(ab,null,null,0,0);
+            }
+            &:before{
+                display: none;
+            }
+        }
+        .description-list{
+            max-width: 291px;
+          margin: 0 auto;
+
+            li{
+                font-size: 16px;
+                line-height: 1.5;
+                font-weight: 600;
+                margin-bottom: 48px;
+            }
+        }
+    }
+}
+
+@media(min-width:1024px){
+    .OurMission-section{
+        padding-top: 168px;
+        max-width: 1253px;
+        margin: 0 auto;
+        .ourmission-card-wrapper{
+            flex-direction: row;
+           .card{
+            .card-content{
+                p{
+                    font-size: 20px;
+                }
+            }
+           }
+        }
+    }
+}

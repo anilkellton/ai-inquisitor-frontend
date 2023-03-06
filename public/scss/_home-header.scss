@@ -1,0 +1,38 @@
+.home-header-section{
+   padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
+    .login{
+        color: $primary-color;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1.2;
+    }
+}
+.sign-up{
+    background-color: $primary-color;
+    color: $primary-btn-color;
+    padding: 11px 16px;
+    text-decoration: none;
+    margin-right: 16px;
+    &:before{
+        background-color: $white-gray;
+    }
+    &:after{
+        background-color: $white-gray;
+    }
+    
+}
+.logout-btn{
+    background-color: $primary-color;
+    padding: 8px 18px;
+    text-decoration: none;
+    border-radius: 7px;
+    font-weight: 700;
+    font-size: 18px;
+}
+.black-btn-color{
+    color:$primary-btn-color !important;
+}

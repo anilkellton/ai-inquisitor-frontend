@@ -1,0 +1,122 @@
+.upcoming-game-section{
+    padding-top: 32px;
+        .hed-title{
+            margin-left: auto;
+            max-width: none;
+        }
+        .game-card-outer-wrapper{
+            max-width: 410px;
+            margin: 0 auto;
+            padding: 0px 0 44px 0;
+
+            .backTitle{
+                font-size: 14px;
+                font-weight: 300;
+                line-height: 1.2
+            }
+            .card-title{
+                .Prize-pool{
+                    .prize{
+                        font-size: 16px !important;
+                        font-weight: 500 !important;
+                    }
+                }
+            }
+        }
+        .game-card-section{
+            @include pos(re);
+                padding: 48px 13px;
+                text-align: center;
+                background-color: $gray-2;
+
+                &:before{
+                    content: '';
+                     border-left: 4px solid #ffff;
+                     border-top: 4px solid #ffff;
+                     width: 95px;
+                     height: 105px;
+                     @include pos(ab,-3px,null,null,-3px);
+                }
+                &:after{
+                    content: '';
+                     border-bottom: 4px solid #ffff;
+                     border-right: 4px solid #ffff;
+                     width: 95px;
+                     height: 105px;
+                     @include pos(ab,null,0,0,null);
+                }
+            .wrapper-button{
+                @include pos(ab,-12px,null,null,50%);
+                background-color: $dark-gray-bg;
+                border: 1px solid $link-color;
+                z-index: 9;
+                transform: translatex(-50%);
+               .button-action{
+                padding: 14px 39px;
+                color: $link-color;
+                border: none;
+                background-color: transparent;
+                font-weight: 700;
+                font-size: 19px;
+                line-height: 1.1;
+              
+               }
+                &:before{
+                    content: "";
+                    width: 12px;
+                    height: 12px;
+                    background-color: $primary-bg;
+                    border-bottom: 1px solid $link-color;
+                    @include pos(ab,-7px,null,null,-7px);
+                    transform: rotate(-45deg);
+                }
+                &:after{
+                    content: "";
+                    width: 12px;
+                    height: 12px;
+                    background-color: $gray-2;
+                    border-top: 1px solid $link-color;
+                    @include pos(ab,null,-7px,-7px,null);
+                    transform: rotate(-45deg);
+                }
+            }
+        }
+}
+
+@media(min-width:1024px){
+    .upcoming-game-section{
+        padding: 224px 0;
+        .game-card-section{
+            max-width: 1031px;
+            margin: 0 auto;
+            border-top: 72px solid $gray-2;
+            border-left: 8px solid $gray-2;
+            border-right: 8px solid $gray-2;
+            border-bottom: 8px solid $gray-2;
+            background-color: transparent;
+            &:before{
+                top: -76px;
+                left: -12px;
+            }
+            &:after{
+                bottom: -12px;
+                right: -12px;
+            }
+            .wrapper-button{
+                top: -82px;
+            }
+        }
+        .game-card-outer-wrapper{
+            padding: 0 0 100px 0;
+        }
+    }
+    .hed-title{
+        .title{
+            font-size: 54px;
+        }
+        .content{
+            font-size: 20px;
+        }
+    }
+}
+

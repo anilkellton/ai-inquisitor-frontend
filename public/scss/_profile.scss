@@ -1,0 +1,194 @@
+.profile-Wrapper {
+    padding-bottom: 40px;
+    .profile-details-wrapper {
+        max-width: 341px;
+        margin: -40px auto;
+        padding-bottom: 16px;
+        .profile-image {
+            @include pos(re, 54px, null, null, null);
+            display: inline-block;
+            z-index: 99;
+            img{
+                border: 2px solid $primary-color;
+            }
+            .camera-image {
+                @include pos(ab, 7px, -6px, null, null);
+                width: 31px;
+                height: 31px;
+                background-color: $primary-color;
+                border-radius: 50%;
+                border: none;
+                z-index: 1;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        .profile-details {
+            background-color: #212224;
+            @include pos(re);
+            padding: 13px 12px 30px 0;
+            &:before {
+                content: "";
+                width: 12px;
+                height: 12px;
+                background-color: $primary-bg;
+                @include pos(ab, -6px, null, null, -6px);
+                transform: rotate(-45deg);
+            }
+            &:after {
+                content: "";
+                width: 12px;
+                height: 12px;
+                background-color: $primary-bg;
+                @include pos(ab, null, -6px, -6px, null);
+                transform: rotate(-45deg);
+            }
+            .edit {
+                font-size: 14px;
+                display: flex;
+                align-items: center;
+                column-gap: 8px;
+                color: $link-color;
+                float: right;
+                background: none;
+                border: none;
+                cursor: pointer;
+                .edit-icon {
+                    width: 19px;
+                    height: 19px;
+                    background-color: $link-color;
+                    border-radius: 50%;
+                }
+                a {
+                    color: $link-color;
+                }
+            }
+            h3 {
+                font-weight: 700;
+                font-size: 22px;
+                line-height: 1.3;
+                padding-top: 67px;
+            }
+            h5 {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 1.25;
+                padding-bottom: 8px;
+            }
+            .email {
+                display: block;
+                padding: 14px 0 10px 0;
+                color: $primary-color;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 1.2;
+                text-decoration: none;
+            }
+            .personal-details {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                column-gap: 38px;
+                .mobile-num {
+                    color: $primary-color;
+                    font-weight: 500;
+                    font-size: 14px;
+                    line-height: 1.2;
+                    text-decoration: none;
+                }
+                .dob {
+                    color: $primary-color;
+                    font-weight: 500;
+                    font-size: 14px;
+                    line-height: 1.2;
+                }
+            }
+        }
+    }
+    .change-password {
+        max-width: 343px;
+        margin: 50px auto;
+        padding: 0 23px;
+        height: 62px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #242427;
+        a {
+            color : $primary-color;
+            font-size: 17px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+    }
+    .under-line {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+// otpContainer
+.otpContainer {
+    display: flex;
+    align-items: center;
+    max-width: 314px;
+    margin: 0 auto 26px auto;
+    gap: 0 10px;
+    .otpInput {
+        width: 100%;
+        text-align: center;
+        height: 57px;
+        @include Orbitron;
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 1.25;
+        color: $link-color;
+        cursor: pointer;
+        background-color: $otp-placeholder;
+        opacity: 1;
+        border: 1px solid $input-bg;
+        &.disabled{
+            pointer-events: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none; 
+        }
+    }
+    span {
+        @include pos(re);
+        flex: 0 1 62px;
+    }
+}
+.withborder {
+    .otpContainer {
+        justify-content: space-between;
+        padding-bottom: 70px;
+        span {
+            &:before {
+                @include pos(ab, 0, null, null, 0);
+                content: '';
+                border-left: 1.5px solid #ffff;
+                border-top: 1.5px solid #ffff;
+                width: 16px;
+                height: 16px;
+            }
+            &:after {
+                @include pos(ab, null, 0, 0, null);
+                content: '';
+                border-right: 1.5px solid #ffff;
+                border-bottom: 1.5px solid #ffff;
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+    .description {
+        text-align: center;
+        padding: 58px 0;
+        .title {
+            color: $link-color;
+            margin-bottom: 12px;
+        }
+    }
+}
