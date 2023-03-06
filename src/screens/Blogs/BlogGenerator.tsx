@@ -17,8 +17,7 @@ export default function BlogGenerator() {
     "Passionate"
   ]
 
-  const handleToneChange = (event: any) => {
-
+  const handleToneChange = (event: any) => { 
   }
 
   const handleSelecetedKeywords = (item: any) => {
