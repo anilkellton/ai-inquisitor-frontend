@@ -6,9 +6,12 @@ const { post, patch,get } = methods;
 
 const BlogService = {
   viewBlogService: () => {
-    const url = `${blog.viewBlogsURL()}`;
+    const url = `${blog.BlogsURL()}`;
     console.log(url,'url')
     return get(url);
+  },
+  createBlogService: (body:any) => {
+   return post(blog.BlogsURL(),body)
   },
   // viewBlogService: () => {
   //   return get(blog.viewBlogsURL());

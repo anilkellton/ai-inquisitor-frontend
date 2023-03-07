@@ -1,14 +1,21 @@
-import React, { useState } from 'react'
-import { Box, Card, Checkbox, Divider, FormControl, InputLabel, ListItemText, MenuItem, OutlinedInput, Select } from '@mui/material'
+import React, { useState,useEffect } from 'react'
+import { Box, Card, Checkbox, Divider, FormControl, InputLabel, ListItemText, MenuItem, OutlinedInput, Select, TextField } from '@mui/material'
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import TextFieldWithChips from '../../components/TextFieldWithChips';
-
+import QueryService from '../../API/services/QueryService';
+import { useForm, Controller } from "react-hook-form";
 
 export default function BlogGenerator() {
   const [selectedTone, setSelectedTone] = useState<any>(null)
+  const [blogData, setBlogData] = useState([])
+  const { control, reset, handleSubmit } = useForm();
+// const generateBlog = async (data:any) => {
+
+// }
+
   const tones = [
     "Convincing",
     "Formal",
@@ -20,8 +27,45 @@ export default function BlogGenerator() {
   const handleToneChange = (event: any) => { 
   }
 
-  const handleSelecetedKeywords = (item: any) => {
+  useEffect(() => {}, []);
 
+  const onSubmit = async(data: any) => {
+    try {
+      console.log('in');
+      const req = {
+        query: data.query
+      };
+      console.log(req,'req')
+      console.log(JSON.stringify(req));
+      let res = await QueryService.generateQueryService(req);
+      if (res.status === 200 && res.data.success) {
+        console.log(res.data.message)
+        // router.replace('/user/login');
+      } else {
+        return console.error("something went wrong");
+      }
+    } catch (error) {
+      console.log('out');
+      return console.log(data);
+    }
+  }
+
+  const handleSelecetedKeywords = async(item: any) => {
+    // try {
+    //   const req = {
+    //     query: item.query
+    //   };
+    //   console.log(JSON.stringify(req));
+    //   let res = await QueryService.generateQueryService(req);
+    //   if (res.status === 200 && res.data.success) {
+    //     console.log(res.data.message)
+    //     // router.replace('/user/login');
+    //   } else {
+    //     return console.error("something went wrong");
+    //   }
+    // } catch (error) {
+    //   return console.log(item);
+    // }
   }
   return (
     <Card sx={{ width: "80%", height: "100%", minHeight: 800, background: "white" }}>
@@ -50,21 +94,22 @@ export default function BlogGenerator() {
 
           <div style={{ marginTop: "30px" }} />
 
-          <FormControl sx={{ m: 1, width: "100%" }}>
-            <TextFieldWithChips
-              selectedTags={handleSelecetedKeywords}
+          <FormControl sx={{ m: 1, width: "100%" }}  onSubmit={handleSubmit(onSubmit)}>
+            <TextField
+              // selectedTags={handleSelecetedKeywords}
+              onSubmit={handleSubmit(onSubmit)}
               fullWidth
               variant="outlined"
-              id="keywords"
-              name="Keywords"
-              placeholder="general ai, narrow ai"
-              label="Keywords"
+              id="query"
+              name="query"
+              placeholder="Enter your query"
+              label="Query"
             />
           </FormControl>
         </CardContent>
       </CardActionArea>
       <CardActions sx={{ justifyContent: "right" }}>
-        <Button variant="contained">Generate Results</Button>
+        <Button variant="contained" >Generate Results</Button>
       </CardActions>
     </Card>
   )

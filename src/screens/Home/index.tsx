@@ -9,40 +9,30 @@ import Typography from '@mui/material/Typography';
 import BlogServices from "../../API/services/BlogService";
 
 const Landing = () => {
-  const [blogData, setBlogData] = useState([]);
-
+  type Response = {
+    status: Number,blogData: [{content: any}]
+}
+  const [blogData, setBlogData] = useState<Response[]>([]);
   useEffect(() => {
     blogDetails();
   }, []);
 
   const blogDetails = async () => {
     try{
-      console.log('in')
       const response = await BlogServices.viewBlogService();
-      console.log(response,'response')
       if(response.status ===200 && response.statusText == 'OK'){
-        setBlogData(response.data);
+        setBlogData(response.data.blogData);
       }
     } catch(error) {
-      console.log('out')
       console.log(error);
     }
   }
-
-  // const blogs = [
-  //   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-  //   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-  //   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-  //   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
-  // ]
-
   return (
     <>
-     {console.log(blogData,'data')}
     <div style={{ justifyContent: "center", display: "flex" }}>
       <List sx={{ width: '80%', bgcolor: 'background.paper' }}>
         {
-          blogData.map((item) => (
+          blogData.map((item,key) => (
             <>
               <ListItem alignItems="flex-start">
                 <ListItemAvatar>
@@ -55,13 +45,14 @@ const Landing = () => {
                     <React.Fragment>
                       <Typography
                         sx={{ display: 'inline' }}
+                        key= {key}
                         component="span"
                         variant="body2"
                         color="text.primary"
                       >
-                        Ali Connors
+                        AI-GENERATED
                       </Typography>
-                      {item}
+                      {item.content}
                     </React.Fragment>
                   }
                 />
