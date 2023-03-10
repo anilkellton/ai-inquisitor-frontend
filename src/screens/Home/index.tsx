@@ -12,7 +12,7 @@ const Landing = () => {
   type Response = {
     status: Number,blogData: [{}]
 }
-  const [blogData, setBlogData] = useState<Response[]>([]);
+  const [blogData, setBlogData] = useState<any[]>([]);
   useEffect(() => {
     blogDetails();
   }, []);

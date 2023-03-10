@@ -94,10 +94,9 @@ export default function BlogGenerator() {
 
           <div style={{ marginTop: "30px" }} />
 
-          <FormControl sx={{ m: 1, width: "100%" }}  onSubmit={handleSubmit(onSubmit)}>
+          <FormControl sx={{ m: 1, width: "100%" }}>
             <TextField
               // selectedTags={handleSelecetedKeywords}
-              onSubmit={handleSubmit(onSubmit)}
               fullWidth
               variant="outlined"
               id="query"
@@ -109,7 +108,7 @@ export default function BlogGenerator() {
         </CardContent>
       </CardActionArea>
       <CardActions sx={{ justifyContent: "right" }}>
-        <Button variant="contained" >Generate Results</Button>
+        <Button variant="contained"  onClick={async () => {await onSubmit} }>Generate Results</Button>
       </CardActions>
     </Card>
   )
