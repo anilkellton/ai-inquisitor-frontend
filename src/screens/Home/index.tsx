@@ -10,7 +10,7 @@ import BlogServices from "../../API/services/BlogService";
 
 const Landing = () => {
   type Response = {
-    status: Number,blogData: [{content: any}]
+    status: Number,blogData: [{}]
 }
   const [blogData, setBlogData] = useState<Response[]>([]);
   useEffect(() => {
