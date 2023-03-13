@@ -9,31 +9,34 @@ import QueryService from '../../API/services/QueryService';
 import { useForm, Controller } from "react-hook-form";
 
 export default function BlogGenerator() {
-  const [selectedTone, setSelectedTone] = useState<any>(null)
-  const [blogData, setBlogData] = useState([])
+  const [selectedTone, setTone] = useState('')
+  const [query, setQuery] = useState('');
+  // const [blogData, setBlogData] = useState([])
   const { control, reset, handleSubmit } = useForm();
 // const generateBlog = async (data:any) => {
 
 // }
-
   const tones = [
-    "Convincing",
-    "Formal",
-    "Professional",
-    "Humorous",
-    "Passionate"
-  ]
+    { label: 'Select', value: '' },
+    { label: 'Convincing', value: 'Convincing' },
+    { label: 'Formal', value: 'Formal' },
+    { label: 'Professional', value: 'Professional' },
+    {label:'Humorous',value:'Humorous'},
+    {label:'Passionate',value:'Passionate'}
+  ];
 
   const handleToneChange = (event: any) => { 
   }
-
+  
   useEffect(() => {}, []);
 
-  const onSubmit = async(data: any) => {
+  const onSubmit = async() => {
     try {
-      console.log('in');
+     alert('heel')
       const req = {
-        query: data.query
+        query: query,
+        tone:selectedTone,
+        getImage:false
       };
       console.log(req,'req')
       console.log(JSON.stringify(req));
@@ -46,7 +49,7 @@ export default function BlogGenerator() {
       }
     } catch (error) {
       console.log('out');
-      return console.log(data);
+      console.log(error)
     }
   }
 
@@ -69,6 +72,7 @@ export default function BlogGenerator() {
   }
   return (
     <Card sx={{ width: "80%", height: "100%", minHeight: 800, background: "white" }}>
+      <form onSubmit={onSubmit}>
       <CardActionArea>
         <Typography variant="h6" sx={{ textAlign: "center", padding: "50px" }} component="div">
           BLOG GENERATOR
@@ -80,13 +84,12 @@ export default function BlogGenerator() {
               labelId="demo-multiple-checkbox-label"
               id="demo-multiple-checkbox"
               value={selectedTone}
-              onChange={handleToneChange}
-              input={<OutlinedInput label="Select Tone" />}
-              renderValue={(selected) => selected.join(', ')}
+              onChange={(event) => setTone(event.target.value)}
+              input={<OutlinedInput label="Select Tone" />} 
             >
               {tones.map((tone) => (
-                <MenuItem key={tone} value={tone}>
-                  <ListItemText primary={tone} />
+                <MenuItem key={tone.value} value={tone.value}>
+                  {tone.label}
                 </MenuItem>
               ))}
             </Select>
@@ -96,7 +99,7 @@ export default function BlogGenerator() {
 
           <FormControl sx={{ m: 1, width: "100%" }}>
             <TextField
-              // selectedTags={handleSelecetedKeywords}
+              onChange={(event) => setQuery(event.target.value)}
               fullWidth
               variant="outlined"
               id="query"
@@ -108,8 +111,9 @@ export default function BlogGenerator() {
         </CardContent>
       </CardActionArea>
       <CardActions sx={{ justifyContent: "right" }}>
-        <Button variant="contained"  onClick={async () => {await onSubmit} }>Generate Results</Button>
+        <Button type='submit' variant="contained">Generate Results</Button>
       </CardActions>
+      </form>
     </Card>
   )
 }

@@ -1,8 +1,8 @@
 // @ts-nocheck
-import React, { useCallback, useMemo } from 'react'
-import isHotkey from 'is-hotkey'
+import React, { useCallback, useMemo,useState } from 'react'
+import { EditorState } from 'draft-js';
 import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Editable, withReact, useSlate, Slate } from 'slate-react'
 import {
   Editor,
@@ -30,16 +30,15 @@ const BlogEditor = () => {
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
-
+  const [editorState, setEditorState] = useState(
+    () => EditorState.createEmpty(),
+  );
   return (
-    <Card sx={{ width: "100%", height: "100%", padding: "30px", minHeight: 800, background: "white" }}>
-     <Editor
-  editorState={editorState}
-  toolbarClassName="toolbarClassName"
-  wrapperClassName="wrapperClassName"
-  editorClassName="editorClassName"
-  onEditorStateChange={this.onEditorStateChange}
-  />;
+    <Card className='editor-headers' sx={{ width: "100%", height: "100%", padding: "30px", minHeight: 800 }}>
+      <Editor
+        editorState={editorState}
+        onEditorStateChange={setEditorState}
+      />
     </Card>
   )
 }
