@@ -8,14 +8,10 @@ import TextFieldWithChips from '../../components/TextFieldWithChips';
 import QueryService from '../../API/services/QueryService';
 import { useForm, Controller } from "react-hook-form";
 
-export default function BlogGenerator() {
+export default function BlogGenerator(setData: any) {
   const [selectedTone, setTone] = useState('')
   const [query, setQuery] = useState('');
-  // const [blogData, setBlogData] = useState([])
-  const { control, reset, handleSubmit } = useForm();
-// const generateBlog = async (data:any) => {
 
-// }
   const tones = [
     { label: 'Select', value: '' },
     { label: 'Convincing', value: 'Convincing' },
@@ -25,24 +21,21 @@ export default function BlogGenerator() {
     {label:'Passionate',value:'Passionate'}
   ];
 
-  const handleToneChange = (event: any) => { 
-  }
-  
-  useEffect(() => {}, []);
-
-  const onSubmit = async() => {
+  const handleSubmit = async(event: any) => {
+    event.preventDefault();
+    console.log(query);
     try {
-     alert('heel')
       const req = {
-        query: query,
-        tone:selectedTone,
-        getImage:false
+        query: query
       };
       console.log(req,'req')
       console.log(JSON.stringify(req));
       let res = await QueryService.generateQueryService(req);
-      if (res.status === 200 && res.data.success) {
-        console.log(res.data.message)
+      if (res.status === 200) {
+        console.log('in')
+        // setData(res.data.textAnswer)
+        //  console.log(setData,'setData1')
+        console.log(res.data.textAnswer,'setData')
         // router.replace('/user/login');
       } else {
         return console.error("something went wrong");
@@ -54,25 +47,16 @@ export default function BlogGenerator() {
   }
 
   const handleSelecetedKeywords = async(item: any) => {
-    // try {
-    //   const req = {
-    //     query: item.query
-    //   };
-    //   console.log(JSON.stringify(req));
-    //   let res = await QueryService.generateQueryService(req);
-    //   if (res.status === 200 && res.data.success) {
-    //     console.log(res.data.message)
-    //     // router.replace('/user/login');
-    //   } else {
-    //     return console.error("something went wrong");
-    //   }
-    // } catch (error) {
-    //   return console.log(item);
-    // }
   }
+
+  const handleInputChange = (event:any) => {
+    setQuery(event.target.value);
+  };
+
+
   return (
     <Card sx={{ width: "80%", height: "100%", minHeight: 800, background: "white" }}>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
       <CardActionArea>
         <Typography variant="h6" sx={{ textAlign: "center", padding: "50px" }} component="div">
           BLOG GENERATOR
@@ -97,16 +81,17 @@ export default function BlogGenerator() {
 
           <div style={{ marginTop: "30px" }} />
 
-          <FormControl sx={{ m: 1, width: "100%" }}>
-            <TextField
-              onChange={(event) => setQuery(event.target.value)}
-              fullWidth
-              variant="outlined"
-              id="query"
-              name="query"
-              placeholder="Enter your query"
-              label="Query"
-            />
+          <FormControl sx={{ m: 1, width: "100%" }} onSubmit={handleSubmit}>
+             <TextField
+        label="Query"
+        id="query"
+        name="query"
+        type="text"
+        value={query}
+        onChange={handleInputChange}
+        variant="outlined"
+        placeholder="Enter your query"
+      />
           </FormControl>
         </CardContent>
       </CardActionArea>

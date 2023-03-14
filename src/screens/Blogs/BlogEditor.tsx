@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useCallback, useMemo,useState } from 'react'
+import React, {useEffect, useCallback, useMemo,useState } from 'react'
 import { EditorState } from 'draft-js';
 import { Editor } from "react-draft-wysiwyg";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -26,7 +26,13 @@ const HOTKEYS = {
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
 const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify']
 
-const BlogEditor = () => {
+const BlogEditor = (prop) => {
+
+  useEffect(() => {
+    console.log('useEffect')
+  }, [] )
+
+  console.log(prop,'blogData')
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
