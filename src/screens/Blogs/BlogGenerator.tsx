@@ -33,6 +33,7 @@ export default function BlogGenerator(setData: any) {
       let res = await QueryService.generateQueryService(req);
       if (res.status === 200) {
         console.log('in')
+        setData(res.data.textAnswer)
         // setData(res.data.textAnswer)
         //  console.log(setData,'setData1')
         console.log(res.data.textAnswer,'setData')

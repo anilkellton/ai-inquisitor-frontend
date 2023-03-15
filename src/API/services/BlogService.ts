@@ -5,13 +5,17 @@ const { blog } = dictionary;
 const { post, patch,get } = methods;
 
 const BlogService = {
-  viewBlogService: () => {
+  lisingService: () => {
     const url = `${blog.BlogsURL()}`;
     console.log(url,'url')
     return get(url);
   },
   createBlogService: (body:any) => {
    return post(blog.BlogsURL(),body)
+  },
+  viewBlogService: (id:any) => {
+      const url = `${blog.BlogsURL()}?id=${id}`;
+      return get(url);
   },
   // viewBlogService: () => {
   //   return get(blog.viewBlogsURL());

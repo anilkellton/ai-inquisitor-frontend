@@ -26,13 +26,16 @@ const HOTKEYS = {
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
 const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify']
 
-const BlogEditor = (prop) => {
+const BlogEditor = (props) => {
+  console.log(props,'props')
 
-  useEffect(() => {
-    console.log('useEffect')
-  }, [] )
+  const {data} = props
 
-  console.log(prop,'blogData')
+  // useEffect(() => {
+  //   console.log('useEffect')
+  // }, [data] )
+
+  console.log(data,'blogData')
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])

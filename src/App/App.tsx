@@ -13,6 +13,7 @@ import {
 } from 'react-router-dom';
 import navigation from '../navigation';
 import screens from '../screens';
+import BlogView from '../screens/Blogs/BlogView';
 const { Home, Dashboard, CreateBlog } = screens;
 
 const { ProtectedRoute } = navigation;
@@ -39,6 +40,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create-blog" element={<CreateBlog />} />
+          <Route path="/view-blog" element={<BlogView />} />
 
         </Routes>
       </main>
