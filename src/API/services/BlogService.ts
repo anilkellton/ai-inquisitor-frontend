@@ -6,7 +6,7 @@ const { post, patch,get } = methods;
 
 const BlogService = {
   lisingService: () => {
-    const url = `${blog.BlogsURL()}`;
+    const url = `${blog.ListingBlogsURL()}`;
     console.log(url,'url')
     return get(url);
   },
