@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import { Box, Card, Checkbox, Divider, FormControl, InputLabel, ListItemText, MenuItem, OutlinedInput, Select, TextField } from '@mui/material'
+import { Card, FormControl, InputLabel, MenuItem, OutlinedInput, Select, TextField } from '@mui/material'
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
@@ -8,7 +8,7 @@ import TextFieldWithChips from '../../components/TextFieldWithChips';
 import QueryService from '../../API/services/QueryService';
 import { useForm, Controller } from "react-hook-form";
 
-export default function BlogGenerator(setData: any) {
+export default function BlogGenerator(props: any) {
   const [selectedTone, setTone] = useState('')
   const [query, setQuery] = useState('');
 
@@ -26,14 +26,17 @@ export default function BlogGenerator(setData: any) {
     console.log(query);
     try {
       const req = {
-        query: query
+        query: query,
+        tone:selectedTone,
+        getImage:false
       };
       console.log(req,'req')
       console.log(JSON.stringify(req));
       let res = await QueryService.generateQueryService(req);
       if (res.status === 200) {
         console.log('in')
-        setData(res.data.textAnswer)
+        console.log(res);
+        props.setData({response:res.data.textAnswer,query:query})
         // setData(res.data.textAnswer)
         //  console.log(setData,'setData1')
         console.log(res.data.textAnswer,'setData')
@@ -42,7 +45,6 @@ export default function BlogGenerator(setData: any) {
         return console.error("something went wrong");
       }
     } catch (error) {
-      console.log('out');
       console.log(error)
     }
   }

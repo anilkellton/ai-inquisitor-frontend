@@ -8,6 +8,9 @@ const textService = {
     generateQueryService: (body:any) => {
         return post(query.QueryURL(),body)
        },
+    saveResponseService:(body:any)=>{
+      return post(query.SaveURL(),body)
+    }   
   // viewtextService: () => {
   //   return get(blog.viewBlogsURL());
   // }

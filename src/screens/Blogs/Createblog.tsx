@@ -4,7 +4,7 @@ import BlogGenerator from './BlogGenerator'
 import React, { useState,useEffect } from 'react'
 
 export default function Createblog() {
-  const [data, setData] = useState('')
+  const [data, setData] = useState({})
 
   console.log(data,'createData')
   const alignCenter = { display: 'flex', justifyContent: "center" }
