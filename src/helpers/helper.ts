@@ -6,3 +6,6 @@ export const dateConvert = (dateString:string)=>{
     const formattedDate = `${month} ${day}, ${year}`;
     return formattedDate;
   }
+ export const trimBody = (content:string,words:number)=>{
+    return `${content.slice(0, words)}....`
+  }

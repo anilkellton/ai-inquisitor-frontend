@@ -9,14 +9,17 @@ export default function Createblog() {
   console.log(data,'createData')
   const alignCenter = { display: 'flex', justifyContent: "center" }
   return (
-    <Grid container spacing={2} sx={{ marginTop: "10px" }}>
-      <Grid item xs={4} sx={alignCenter}>
+    <section id="blog" className="blog">
+    <div className="container" data-aos="fade-up">
+      <div className="row g-5">
+      <div className="col-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
         <BlogGenerator setData={setData}/>
-      </Grid>
-      <Grid item xs={8} sx={{ ...alignCenter, height: "90vh" }}>
+        </div>
+        <div className="col-lg-8 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
         <BlogEditor data={data} />
-        
-      </Grid>
-    </Grid >
+        </div>
+    </div>
+    </div>
+    </section>
   )
 }

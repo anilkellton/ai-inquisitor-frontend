@@ -1,37 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
 import BlogServices from "../../API/services/BlogService";
 import { Link } from 'react-router-dom';
-import {dateConvert} from '../../helpers/helper'
+import {dateConvert,trimBody} from '../../helpers/helper'
+import RecentPost from '../../components/RecentPost';
 
 const Landing = () => {
-  type Response = {
-    status: Number,blogData: [{}]
-}
   const [blogData, setBlogData] = useState<any[]>([]);
+  const [pages,setPages] = useState<number>(0);
+  const [pageNumber,setPageNumber] = useState<number>(1)
   useEffect(() => {
     blogDetails();
-  }, []);
+  }, [pageNumber]);
+  const setPage = function(event:any,number:number):void{
+    event.preventDefault();
+    setPageNumber(number)
+  }
 
   const blogDetails = async () => {
     try{
-      const response = await BlogServices.listingService();
+      const response = await BlogServices.listingService(pageNumber);
       if(response.status ===200 && response.statusText == 'OK'){
         setBlogData(response.data.blogData);
+        setPages(response.data.totalPages)
       }
     } catch(error) {
       console.log(error);
     }
-  }
-  const trimBody = (content:string)=>{
-    return `${content.slice(0, 100)}....`
-
   }
   return (
     <>
@@ -64,7 +58,7 @@ const Landing = () => {
                     </ul>
                   </div>
 
-                  <div className="content" dangerouslySetInnerHTML={{ __html: trimBody(item.content) }}>
+                  <div className="content" dangerouslySetInnerHTML={{ __html: trimBody(item.content,200) }}>
                   </div>
 
                   <div className="read-more mt-auto align-self-end">
@@ -78,9 +72,7 @@ const Landing = () => {
 
             <div className="blog-pagination">
               <ul className="justify-content-center">
-                <li><a href="#">1</a></li>
-                <li className="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
+              {Array.from({ length: pages }, (_, index) => <li key={index}><a onClick={(event)=>setPage(event,index+1)}  href="">{index+1}</a></li>)}
               </ul>
             </div>
 
@@ -97,40 +89,15 @@ const Landing = () => {
                   <button type="submit"><i className="bi bi-search"></i></button>
                 </form>
               </div>
+              <RecentPost data={blogData}/>
 
-
-              <div className="sidebar-item recent-posts">
-                <h3 className="sidebar-title">Recent Posts</h3>
-
-                <div className="mt-3">
-
-                  <div className="post-item mt-3">
-                    {/* <img src="assets/img/blog/blog-recent-1.jpg" alt="" className="flex-shrink-0"/> */}
-                    <div>
-                      <h4><a href="blog-post.html">Nihil blanditiis at in nihil autem</a></h4>
-                      <time>Jan 1, 2020</time>
-                    </div>
-                  </div>
-
-                  <div className="post-item">
-                    {/* <img src="assets/img/blog/blog-recent-2.jpg" alt="" className="flex-shrink-0" /> */}
-                    <div>
-                      <h4><a href="blog-post.html">Quidem autem et impedit</a></h4>
-                      <time>Jan 1, 2020</time>
-                    </div>
-                  </div>                 
-
-                </div>
-
-              </div>
-
-              <div className="sidebar-item tags">
+              {/* <div className="sidebar-item tags">
                 <h3 className="sidebar-title">Tags</h3>
                 <ul className="mt-3">
                   <li><a href="#">App</a></li>
                 
                 </ul>
-              </div>
+              </div> */}
 
             </div>
 

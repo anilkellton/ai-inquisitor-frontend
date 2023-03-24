@@ -1,10 +1,3 @@
-import React from 'react';
-import { Box } from '@mui/material';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import "../../public/css/vendor/bootstrap/css/bootstrap.min.css";
 import "../../public/css/vendor/bootstrap-icons/bootstrap-icons.css";
 import "../../public/css/main.css";
@@ -24,6 +17,7 @@ import BlogView from '../screens/Blogs/BlogView';
 import Header from '../screens/Navigation/header';
 const { Home, Dashboard, CreateBlog } = screens;
 import { useEffect,useState } from 'react'
+import Footer from '../screens/Navigation/footer';
 import { useLocation,Link } from 'react-router-dom';
 {/* <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"> */}
@@ -79,6 +73,7 @@ const App = () => {
 
         </Routes>
       </main>
+      <Footer/>
     </>
   );
 };

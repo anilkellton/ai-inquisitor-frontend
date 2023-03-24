@@ -5,6 +5,7 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import { Editor } from '@tinymce/tinymce-react';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Editable, withReact, useSlate, Slate } from 'slate-react'
+import { useNavigate } from 'react-router-dom';
 import {
   Editor,
   Transforms,
@@ -19,22 +20,10 @@ import { Button, Card, Icon, Toolbar } from '@mui/material'
 // import { Button, Icon, Toolbar } from '../components'
 
 const BlogEditor = (props) => {
-  console.log(props,'props')
-
   const {data} = props
   const [content, setContent] = useState('');
-
-  // useEffect(() => {
-  //   console.log('useEffect')
-  // }, [data] )
-
-  console.log(data,'blogData')
+  const history = useNavigate();
   const editorRef = useRef(null);
-  const log = async() => {
-    if (editorRef.current) {
-      editorRef.current.setContent('helllo')
-    }
-  };
   const save = async(event: any)=>{
     try {
       event.preventDefault();
@@ -42,12 +31,9 @@ const BlogEditor = (props) => {
         query: props.data.query?props.data.query:'',
         content: editorRef.current.getContent()
       };
-      console.log(req,'req')
-      console.log(JSON.stringify(req));
       let res = await QueryService.saveResponseService(req);
       if (res.status === 200) {
-        console.log(res)
-        // router.replace('/user/login');
+        history('/')
       } else {
         return console.error("something went wrong");
       }
@@ -61,7 +47,9 @@ const BlogEditor = (props) => {
     }
   }, [props.data])
   return (
-    <Card className='editor-headers' sx={{ width: "100%", height: "100%", padding: "30px", minHeight: 800 }}>
+    <div className='comments'>
+    <div className="reply-form">
+    <div className='col form-group'>
       <Editor
          onInit={(evt, editor) => editorRef.current = editor}
          initialValue="<p>Please use generator to create blog content .</p>"
@@ -82,10 +70,14 @@ const BlogEditor = (props) => {
          value={content}
          onEditorStateChange={setContent}
        />
-      <CardActions sx={{ justifyContent: "right" }}>
-        <Button  variant="contained" onClick={save}>Save</Button>
-      </CardActions>
-    </Card>
+       </div>
+      <div className='row'>
+        <div className='col form-group'>
+      <button type="button"onClick={save} className="btn btn-primary">Save</button>
+      </div>
+      </div>
+    </div>
+    </div>
   )
 }
 

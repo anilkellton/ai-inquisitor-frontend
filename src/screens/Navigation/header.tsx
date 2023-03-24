@@ -5,7 +5,7 @@ const Header = ()=>{
   <div className="container-fluid container-xl d-flex align-items-center justify-content-between">
 
     <a href="index.html" className="logo d-flex align-items-center">
-      <h1 className="d-flex align-items-center">AI - Inquisitor</h1>
+    <Link to="/"> <h1 className="d-flex align-items-center">AI - Inquisitor</h1></Link>
     </a>
 
     <i className="mobile-nav-toggle mobile-nav-show bi bi-list"></i>

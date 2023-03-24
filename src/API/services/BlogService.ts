@@ -5,8 +5,8 @@ const { blog } = dictionary;
 const { post, patch,get } = methods;
 
 const BlogService = {
-  listingService: () => {
-    const url = `${blog.ListingBlogsURL()}`;
+  listingService: (pageNumber:number) => {
+    const url = `${blog.ListingBlogsURL(pageNumber)}`;
     console.log(url,'url')
     return get(url);
   },

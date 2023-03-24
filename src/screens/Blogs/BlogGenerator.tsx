@@ -1,8 +1,4 @@
 import React, { useState,useEffect } from 'react'
-import { Card, FormControl, InputLabel, MenuItem, OutlinedInput, Select, TextField } from '@mui/material'
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
 import QueryService from '../../API/services/QueryService';
 
 export default function BlogGenerator(props: any) {
@@ -36,60 +32,33 @@ export default function BlogGenerator(props: any) {
       console.log(error)
     }
   }
-
-  const handleSelecetedKeywords = async(item: any) => {
-  }
-
   const handleInputChange = (event:any) => {
     setQuery(event.target.value);
   };
 
 
   return (
-    <Card sx={{ width: "80%", height: "100%", minHeight: 800, background: "white" }}>
-      <form onSubmit={handleSubmit}>
-      <CardActionArea>
-        <Typography variant="h6" sx={{ textAlign: "center", padding: "50px" }} component="div">
-          BLOG GENERATOR
-        </Typography>
-        <CardContent>
-          <FormControl sx={{ m: 1, width: "100%" }}>
-            <InputLabel id="demo-multiple-checkbox-label">Select Tone</InputLabel>
-            <Select
-              labelId="demo-multiple-checkbox-label"
-              id="demo-multiple-checkbox"
-              value={selectedTone}
-              onChange={(event) => setTone(event.target.value)}
-              input={<OutlinedInput label="Select Tone" />} 
-            >
-              {tones.map((tone) => (
-                <MenuItem key={tone.value} value={tone.value}>
-                  {tone.label}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          <div style={{ marginTop: "30px" }} />
-
-          <FormControl sx={{ m: 1, width: "100%" }} onSubmit={handleSubmit}>
-             <TextField
-        label="Query"
-        id="query"
-        name="query"
-        type="text"
-        value={query}
-        onChange={handleInputChange}
-        variant="outlined"
-        placeholder="Enter your query"
-      />
-          </FormControl>
-        </CardContent>
-      </CardActionArea>
-      <CardActions sx={{ justifyContent: "right" }}>
-        <Button type='submit' variant="contained">Generate Results</Button>
-      </CardActions>
-      </form>
-    </Card>
+    <div className='comments'>
+    <div className="reply-form">
+                <h4>BLOG GENERATOR</h4>
+                <form onSubmit={handleSubmit}>
+                  <div className="row">
+                    <div className="col form-group">
+                    <select value={selectedTone} className="form-select" aria-label="Default select example"  onChange={(event) => setTone(event.target.value)}>
+                    {tones.map((tone) => (
+                       <option value={tone.value}>{tone.label}</option>
+                    ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col form-group">
+                      <textarea name="comment" className="form-control" placeholder="Your Query.."  value={query} onChange={handleInputChange}></textarea>
+                    </div>
+                  </div>
+                  <button type="submit" className="btn btn-primary">Generate Blog</button>
+                </form>
+              </div>
+              </div>
   )
 }

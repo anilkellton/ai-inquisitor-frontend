@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
-import Avatar from '@material-ui/core/Avatar';
 import {useParams} from "react-router-dom";
 import QueryService from '../../API/services/QueryService';
 import {dateConvert} from '../../helpers/helper'
+import RecentPost from '../../components/RecentPost'
 interface Blog {
   id:number,
   content:string,
@@ -79,14 +74,14 @@ export default function Blog(props:any) {
           <div className="post-author d-flex align-items-center">
             <img src="assets/img/blog/blog-author.jpg" className="rounded-circle flex-shrink-0" alt=""/>
             <div>
-              <h4>Jane Smith</h4>
+              <h4>ChatGPT</h4>
               <div className="social-links">
                 <a href="https://twitters.com/#"><i className="bi bi-twitter"></i></a>
                 <a href="https://facebook.com/#"><i className="bi bi-facebook"></i></a>
                 <a href="https://instagram.com/#"><i className="biu bi-instagram"></i></a>
               </div>
               <p>
-                Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum sed possimus accusantium. Quas repellat voluptatem officia numquam sint aspernatur voluptas. Esse et accusantium ut unde voluptas.
+              I'm ChatGPT, a language model developed by OpenAI, designed to assist and communicate with people through text-based conversations. I've been trained on a large corpus of text data using advanced machine learning techniques to understand natural language, generate human-like responses, and provide accurate and helpful information on a wide range of topics.
               </p>
             </div>
           </div>
@@ -168,29 +163,7 @@ export default function Blog(props:any) {
             </div>
 
 
-            <div className="sidebar-item recent-posts">
-              <h3 className="sidebar-title">Recent Posts</h3>
-
-              <div className="mt-3">
-
-                <div className="post-item mt-3">
-                  <img src="assets/img/blog/blog-recent-1.jpg" alt="" className="flex-shrink-0"/>
-                  <div>
-                    <h4><a href="blog-post.html">Nihil blanditiis at in nihil autem</a></h4>
-                    <time >Jan 1, 2020</time>
-                  </div>
-                </div>
-
-                <div className="post-item">
-                  <img src="assets/img/blog/blog-recent-2.jpg" alt="" className="flex-shrink-0"/>
-                  <div>
-                    <h4><a href="blog-post.html">Quidem autem et impedit</a></h4>
-                    <time >Jan 1, 2020</time>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+            <RecentPost data={[]}/>
 
             {/* <div className="sidebar-item tags">
               <h3 className="sidebar-title">Tags</h3>
