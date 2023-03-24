@@ -24,7 +24,7 @@ import BlogView from '../screens/Blogs/BlogView';
 import Header from '../screens/Navigation/header';
 const { Home, Dashboard, CreateBlog } = screens;
 import { useEffect,useState } from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation,Link } from 'react-router-dom';
 {/* <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"> */}
 
@@ -66,7 +66,7 @@ const App = () => {
 
         <h2>{state}</h2>
         <ol>
-          <li><a href="index.html">Home</a></li>
+          <li><Link to = '/'><a>Home</a></Link></li>
           <li>{state}</li>
         </ol>
 

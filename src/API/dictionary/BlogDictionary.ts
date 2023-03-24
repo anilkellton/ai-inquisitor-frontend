@@ -1,5 +1,6 @@
 const BlogDictionary = {
-    BlogsURL: () => 'blog'
+    BlogsURL: () => 'blog',
+    ListingBlogsURL: () => 'blog'
   };
   
   export default BlogDictionary;

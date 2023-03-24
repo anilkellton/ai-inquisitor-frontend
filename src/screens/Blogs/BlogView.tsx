@@ -192,7 +192,7 @@ export default function Blog(props:any) {
 
             </div>
 
-            <div className="sidebar-item tags">
+            {/* <div className="sidebar-item tags">
               <h3 className="sidebar-title">Tags</h3>
               <ul className="mt-3">
                 <li><a href="#">App</a></li>
@@ -207,7 +207,7 @@ export default function Blog(props:any) {
                 <li><a href="#">Tips</a></li>
                 <li><a href="#">Marketing</a></li>
               </ul>
-            </div>
+            </div> */}
 
           </div>
 

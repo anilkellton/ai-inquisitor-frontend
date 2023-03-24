@@ -21,7 +21,7 @@ const Landing = () => {
 
   const blogDetails = async () => {
     try{
-      const response = await BlogServices.lisingService();
+      const response = await BlogServices.listingService();
       if(response.status ===200 && response.statusText == 'OK'){
         setBlogData(response.data.blogData);
       }
