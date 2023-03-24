@@ -1,12 +1,9 @@
 import React, { useState,useEffect } from 'react'
 import { Card, FormControl, InputLabel, MenuItem, OutlinedInput, Select, TextField } from '@mui/material'
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
-import TextFieldWithChips from '../../components/TextFieldWithChips';
 import QueryService from '../../API/services/QueryService';
-import { useForm, Controller } from "react-hook-form";
 
 export default function BlogGenerator(props: any) {
   const [selectedTone, setTone] = useState('')
@@ -22,25 +19,16 @@ export default function BlogGenerator(props: any) {
   ];
 
   const handleSubmit = async(event: any) => {
-    event.preventDefault();
-    console.log(query);
     try {
+      event.preventDefault();
       const req = {
         query: query,
         tone:selectedTone,
         getImage:false
       };
-      console.log(req,'req')
-      console.log(JSON.stringify(req));
       let res = await QueryService.generateQueryService(req);
       if (res.status === 200) {
-        console.log('in')
-        console.log(res);
         props.setData({response:res.data.textAnswer,query:query})
-        // setData(res.data.textAnswer)
-        //  console.log(setData,'setData1')
-        console.log(res.data.textAnswer,'setData')
-        // router.replace('/user/login');
       } else {
         return console.error("something went wrong");
       }

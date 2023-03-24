@@ -10,6 +10,9 @@ const textService = {
        },
     saveResponseService:(body:any)=>{
       return post(query.SaveURL(),body)
+    },
+    getBlogService:(id:any)=>{
+      return get(`${query.GetUrl()}${id}`)
     }   
   // viewtextService: () => {
   //   return get(blog.viewBlogsURL());

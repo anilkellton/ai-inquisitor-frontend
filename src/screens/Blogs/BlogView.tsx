@@ -5,101 +5,216 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
-import BlogServices from "../../API/services/BlogService";
+import {useParams} from "react-router-dom";
+import QueryService from '../../API/services/QueryService';
+import {dateConvert} from '../../helpers/helper'
+interface Blog {
+  id:number,
+  content:string,
+  query:string,
+  created_Date:string,
+  updated_date:string
+}
 
-
-// const [blogData, setBlogData] = useState<any[]>([]);
-
-// const queryParams = new URLSearchParams(window.location.search);
-
-
-// useEffect(() => {
-//   const id =queryParams.get("id")
-//   if(!blogData){
-//     blogDetails(id);
-//   }
-// }, []);
-
-
-// const blogDetails = async (id:any) => {
-//   try{
-//     const response = await BlogServices.viewBlogService(id);
-//     if(response.status ===200 && response.statusText == 'OK'){
-//       setBlogData(response.data.blogData);
-//     }
-//   } catch(error) {
-//     console.log(error);
-//   }
-// }
-
-const useStyles = makeStyles((theme) => ({
-  name: {
-    lineHeight: 1,
-  },
-  content: {
-    [theme.breakpoints.up('md')]: {
-      paddingLeft: theme.spacing(8),
-      paddingRight: theme.spacing(8)  
-    }
-  },
-  paragraph: {
-    marginBottom: theme.spacing(3)
-  },
-  image: {
-    maxWidth: '100%',
-    borderRadius: theme.shape.borderRadius
+export default function Blog(props:any) { 
+  const id = useParams().id;
+  const [blog, setBlog] = useState<Blog>({id:0,content:'',query:'',created_Date:'',updated_date:''});
+  useEffect(() => {
+    blogDetails();
+  }, []);
+  let blogDetails = async()=>{
+    let res = await QueryService.getBlogService(id);
+      if (res.status === 200) {
+        console.log(res.data.data,'><><<')
+        setBlog(res.data.data)
+        console.log(blog,'hi')
+      } else {
+        return console.error("something went wrong");
+      }
   }
-}));
-
-export default function Blog(props:any) {
-  const classes = useStyles();
-
-  const content = {
-    'date': 'Jan 16, 2020',
-    'header-p1': 'Donec lacinia',
-    'header-p2': 'turpis non sapien lobortis pretium',
-    'avatar': 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&q=80',
-    'name': 'Linda Williams',
-    'job': 'Founder and CEO',
-    'paragraph1': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dictum lacus lorem, ut tincidunt massa accumsan at. Vestibulum libero mauris, facilisis ut nisl vel, dignissim feugiat mi. Curabitur dapibus tortor eu arcu volutpat, a pellentesque mauris auctor. Nunc vel magna felis. Praesent tristique viverra nibh porta ultricies. In iaculis faucibus sapien at tincidunt. Phasellus ut lacinia lorem. Nulla venenatis finibus tincidunt. Maecenas auctor augue odio, in accumsan sem molestie eget. Aliquam at lectus et lectus tempor luctus vel id est. Fusce vel vehicula urna. Donec pretium maximus aliquet. Aliquam felis nisl, tincidunt non lectus vitae, pulvinar iaculis justo.',
-    'paragraph2': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dictum lacus lorem, ut tincidunt massa accumsan at. Vestibulum libero mauris, facilisis ut nisl vel, dignissim feugiat mi. Curabitur dapibus tortor eu arcu volutpat, a pellentesque mauris auctor. Nunc vel magna felis. Praesent tristique viverra nibh porta ultricies. In iaculis faucibus sapien at tincidunt. Phasellus ut lacinia lorem. Nulla venenatis finibus tincidunt. Maecenas auctor augue odio, in accumsan sem molestie eget. Aliquam at lectus et lectus tempor luctus vel id est. Fusce vel vehicula urna. Donec pretium maximus aliquet. Aliquam felis nisl, tincidunt non lectus vitae, pulvinar iaculis justo.',
-    'paragraph3': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dictum lacus lorem, ut tincidunt massa accumsan at. Vestibulum libero mauris, facilisis ut nisl vel, dignissim feugiat mi. Curabitur dapibus tortor eu arcu volutpat, a pellentesque mauris auctor. Nunc vel magna felis. Praesent tristique viverra nibh porta ultricies. In iaculis faucibus sapien at tincidunt. Phasellus ut lacinia lorem. Nulla venenatis finibus tincidunt. Maecenas auctor augue odio, in accumsan sem molestie eget. Aliquam at lectus et lectus tempor luctus vel id est. Fusce vel vehicula urna. Donec pretium maximus aliquet. Aliquam felis nisl, tincidunt non lectus vitae, pulvinar iaculis justo.',
-    'image': 'https://images.unsplash.com/photo-1493397212122-2b85dda8106b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80',
-    ...props.content
-  };
 
   return (
-    <section  style={{backgroundColor:'white'}} >
-        <Container maxWidth="md" >
-          <Box py={10}>
-            <Box textAlign="center" mb={5}>
-              <Container maxWidth="sm">
-                <Chip color="primary" label={content['date']} />
-                <Box my={4}>
-                  <Typography variant="h3" component="h2">
-                    <Typography variant="h3" component="span" color="primary">{content['header-p1']} </Typography>
-                    <Typography variant="h3" component="span">{content['header-p2']}</Typography>
-                  </Typography>
-                </Box>
-                <Box display="flex" justifyContent="center" alignItems="center">
-                  <Avatar alt="" src={content['avatar']} />
-                  <Box ml={2} textAlign="left">
-                    <Typography variant="subtitle1" component="h2" className={classes.name}>{content['name']}</Typography>
-                    <Typography variant="subtitle1" component="h3" color="textSecondary">{content['job']}</Typography>
-                  </Box>
-                </Box>
-              </Container>
-            </Box>
-            <Box className={classes.content}>
-              <Typography variant="subtitle1" color="textSecondary" paragraph={true} className={classes.paragraph}>{content['paragraph1']}</Typography>
-              <Box my={4}>
-                <img src={content['image']} alt="" className={classes.image} />
-              </Box>
-              <Typography variant="subtitle1" color="textSecondary" paragraph={true} className={classes.paragraph}>{content['paragraph1']}</Typography>
-              <Typography variant="subtitle1" color="textSecondary" paragraph={true} className={classes.paragraph}>{content['paragraph1']}</Typography>
-            </Box>
-          </Box>
-        </Container>
-    </section>
+    <section id="blog" className="blog">
+    <div className="container" data-aos="fade-up">
+
+      <div className="row">
+
+        <div className="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+
+          <article className="blog-details">
+
+            <div className="post-img">
+              <img src="assets/img/blog/blog-1.jpg" alt="" className="img-fluid"/>
+            </div>
+
+            <h2 className="title">{blog.query}</h2>
+
+            <div className="meta-top">
+              <ul>
+                <li className="d-flex align-items-center"><i className="bi bi-person"></i> <a href="blog-details.html">Admin</a></li>
+                <li className="d-flex align-items-center"><i className="bi bi-clock"></i> <a href="blog-details.html"><time >{dateConvert(blog.created_Date)}</time></a></li>
+                <li className="d-flex align-items-center"><i className="bi bi-chat-dots"></i> <a href="blog-details.html">0 Comments</a></li>
+              </ul>
+            </div>
+            <div className="content" dangerouslySetInnerHTML={{ __html: blog.content }}>
+
+            </div>
+
+            {/* <div className="meta-bottom">
+              <i className="bi bi-folder"></i>
+              <ul className="cats">
+                <li><a href="#">Business</a></li>
+              </ul>
+
+              <i className="bi bi-tags"></i>
+              <ul className="tags">
+                <li><a href="#">Creative</a></li>
+                <li><a href="#">Tips</a></li>
+                <li><a href="#">Marketing</a></li>
+              </ul>
+            </div> */}
+
+          </article>
+
+          <div className="post-author d-flex align-items-center">
+            <img src="assets/img/blog/blog-author.jpg" className="rounded-circle flex-shrink-0" alt=""/>
+            <div>
+              <h4>Jane Smith</h4>
+              <div className="social-links">
+                <a href="https://twitters.com/#"><i className="bi bi-twitter"></i></a>
+                <a href="https://facebook.com/#"><i className="bi bi-facebook"></i></a>
+                <a href="https://instagram.com/#"><i className="biu bi-instagram"></i></a>
+              </div>
+              <p>
+                Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum sed possimus accusantium. Quas repellat voluptatem officia numquam sint aspernatur voluptas. Esse et accusantium ut unde voluptas.
+              </p>
+            </div>
+          </div>
+
+          {/* <div className="comments">
+
+            <h4 className="comments-count">8 Comments</h4>
+
+            <div id="comment-1" className="comment">
+              <div className="d-flex">
+                <div className="comment-img"><img src="assets/img/blog/comments-1.jpg" alt=""/></div>
+                <div>
+                  <h5><a href="">Georgia Reader</a> <a href="#" className="reply"><i className="bi bi-reply-fill"></i> Reply</a></h5>
+                  <time >01 Jan,2022</time>
+                  <p>
+                    Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis molestiae est qui cum soluta.
+                    Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div id="comment-2" className="comment">
+              <div className="d-flex">
+                <div className="comment-img"><img src="assets/img/blog/comments-2.jpg" alt=""/></div>
+                <div>
+                  <h5><a href="">Aron Alvarado</a> <a href="#" className="reply"><i className="bi bi-reply-fill"></i> Reply</a></h5>
+                  <time >01 Jan,2022</time>
+                  <p>
+                    Ipsam tempora sequi voluptatem quis sapiente non. Autem itaque eveniet saepe. Officiis illo ut beatae.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="reply-form">
+
+              <h4>Leave a Reply</h4>
+              <p>Your email address will not be published. Required fields are marked * </p>
+              <form action="">
+                <div className="row">
+                  <div className="col-md-6 form-group">
+                    <input name="name" type="text" className="form-control" placeholder="Your Name*"/>
+                  </div>
+                  <div className="col-md-6 form-group">
+                    <input name="email" type="text" className="form-control" placeholder="Your Email*"/>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col form-group">
+                    <input name="website" type="text" className="form-control" placeholder="Your Website"/>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col form-group">
+                    <textarea name="comment" className="form-control" placeholder="Your Comment*"></textarea>
+                  </div>
+                </div>
+                <button type="submit" className="btn btn-primary">Post Comment</button>
+
+              </form>
+
+            </div>
+
+          </div> */}
+
+        </div>
+
+        <div className="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+
+          <div className="sidebar ps-lg-4">
+
+            <div className="sidebar-item search-form">
+              <h3 className="sidebar-title">Search</h3>
+              <form action="" className="mt-3">
+                <input type="text"/>
+                <button type="submit"><i className="bi bi-search"></i></button>
+              </form>
+            </div>
+
+
+            <div className="sidebar-item recent-posts">
+              <h3 className="sidebar-title">Recent Posts</h3>
+
+              <div className="mt-3">
+
+                <div className="post-item mt-3">
+                  <img src="assets/img/blog/blog-recent-1.jpg" alt="" className="flex-shrink-0"/>
+                  <div>
+                    <h4><a href="blog-post.html">Nihil blanditiis at in nihil autem</a></h4>
+                    <time >Jan 1, 2020</time>
+                  </div>
+                </div>
+
+                <div className="post-item">
+                  <img src="assets/img/blog/blog-recent-2.jpg" alt="" className="flex-shrink-0"/>
+                  <div>
+                    <h4><a href="blog-post.html">Quidem autem et impedit</a></h4>
+                    <time >Jan 1, 2020</time>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div className="sidebar-item tags">
+              <h3 className="sidebar-title">Tags</h3>
+              <ul className="mt-3">
+                <li><a href="#">App</a></li>
+                <li><a href="#">IT</a></li>
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Mac</a></li>
+                <li><a href="#">Design</a></li>
+                <li><a href="#">Office</a></li>
+                <li><a href="#">Creative</a></li>
+                <li><a href="#">Studio</a></li>
+                <li><a href="#">Smart</a></li>
+                <li><a href="#">Tips</a></li>
+                <li><a href="#">Marketing</a></li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
   );
-}
+}``

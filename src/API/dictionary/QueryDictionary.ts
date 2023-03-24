@@ -1,6 +1,7 @@
 const BlogDictionary = {
     QueryURL: () => 'query',
-    SaveURL: () =>'blog'
+    SaveURL: () =>'blog',
+    GetUrl:()=>'blog/'
   };
   
   export default BlogDictionary;
