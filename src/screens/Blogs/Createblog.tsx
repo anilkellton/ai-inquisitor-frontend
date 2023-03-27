@@ -2,9 +2,11 @@ import { Grid } from '@mui/material'
 import BlogEditor from './BlogEditor'
 import BlogGenerator from './BlogGenerator'
 import React, { useState,useEffect } from 'react'
+import {BlogEditorProps} from './interfaces'
 
 export default function Createblog() {
-  const [data, setData] = useState({})
+  
+  const [data, setData] = useState<BlogEditorProps["data"]>({query:'',response:[],image:''})
 
   console.log(data,'createData')
   const alignCenter = { display: 'flex', justifyContent: "center" }

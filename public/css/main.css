@@ -756,6 +756,7 @@ section {
   line-height: 24px;
   font-size: 14px;
 }
+.hidden { display:none; }
 
 /*--------------------------------------------------------------
 # Call To Action Section

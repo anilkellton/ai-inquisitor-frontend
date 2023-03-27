@@ -6,7 +6,7 @@ const Footer = () => {
               <div className="row gy-4">
                 <div className="col-lg-5 col-md-12 footer-info">
                   <a href="index.html" className="logo d-flex align-items-center">
-                    <span>Nova</span>
+                    <span>AI - Inquisitor</span>
                   </a>
                   <p>
                     Cras fermentum odio eu feugiat lide par naso tierra. Justo
@@ -77,8 +77,8 @@ const Footer = () => {
                 </div>
   
                 <div className="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-                  <h4>Contact Us</h4>
-                  <p>
+                  {/* <h4>Contact Us</h4> */}
+                  {/* <p>
                     A108 Adam Street <br />
                     New York, NY 535022
                     <br />
@@ -87,7 +87,7 @@ const Footer = () => {
                     <br />
                     <strong>Email:</strong> info@example.com
                     <br />
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </div>
@@ -98,12 +98,12 @@ const Footer = () => {
               <div className="copyright">
                 &copy; Copyright{" "}
                 <strong>
-                  <span>Nova</span>
+                  <span>AI - Inquisitor</span>
                 </strong>
                 . All Rights Reserved
               </div>
               <div className="credits">
-                Designed by <a href="https://bootstrapmade.com/">AI Inquister</a>
+                Designed by <a href="https://bootstrapmade.com/">AI - Inquisitor</a>
               </div>
             </div>
           </div>

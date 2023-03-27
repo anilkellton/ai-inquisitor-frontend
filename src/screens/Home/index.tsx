@@ -3,6 +3,7 @@ import BlogServices from "../../API/services/BlogService";
 import { Link } from 'react-router-dom';
 import {dateConvert,trimBody} from '../../helpers/helper'
 import RecentPost from '../../components/RecentPost';
+import {url} from '../../API/client/const'
 
 const Landing = () => {
   const [blogData, setBlogData] = useState<any[]>([]);
@@ -21,7 +22,7 @@ const Landing = () => {
       const response = await BlogServices.listingService(pageNumber);
       if(response.status ===200 && response.statusText == 'OK'){
         setBlogData(response.data.blogData);
-        setPages(response.data.totalPages)
+        setPages(response.data.totalPages);
       }
     } catch(error) {
       console.log(error);
@@ -43,16 +44,16 @@ const Landing = () => {
                 <article className="d-flex flex-column">
 
                   <div className="post-img">
-                    {/* <img src="assets/img/blog/blog-1.jpg" alt="" className="img-fluid" /> */}
+                    <img src={item.image?url+'/'+item.image:'../../public/images/default.jpg'} alt="" className="img-fluid" />
                   </div>
 
                   <h2 className="title">
-                    <a href="blog-details.html">{item.query}</a>
+                  <Link to={`/blog/${item.id}`}><a>{item.query}</a></Link>
                   </h2>
 
                   <div className="meta-top">
                     <ul>
-                      <li className="d-flex align-items-center"><i className="bi bi-person"></i> <a >Admin</a></li>
+                      <li className="d-flex align-items-center"><i className="bi bi-person"></i> <a >ChatGPT</a></li>
                       <li className="d-flex align-items-center"><i className="bi bi-clock"></i> <a ><time >{dateConvert(item.created_Date)}</time></a></li>
                       <li className="d-flex align-items-center"><i className="bi bi-chat-dots"></i> <a >0 Comments</a></li>
                     </ul>
@@ -72,7 +73,7 @@ const Landing = () => {
 
             <div className="blog-pagination">
               <ul className="justify-content-center">
-              {Array.from({ length: pages }, (_, index) => <li key={index}><a onClick={(event)=>setPage(event,index+1)}  href="">{index+1}</a></li>)}
+              {Array.from({ length: pages }, (_, index) => <li className={pageNumber==index+1?"active":""} key={index}><a onClick={(event)=>setPage(event,index+1)}  href="">{index+1}</a></li>)}
               </ul>
             </div>
 

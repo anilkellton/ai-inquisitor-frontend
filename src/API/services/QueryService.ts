@@ -3,12 +3,16 @@ import methods from '../methods';
 
 const { query } = dictionary;
 const { post, patch,get } = methods;
-
+interface saveBlog {
+  query?:string,
+  content:string,
+  image?:string|null
+}
 const textService = {
     generateQueryService: (body:any) => {
         return post(query.QueryURL(),body)
        },
-    saveResponseService:(body:any)=>{
+    saveResponseService:(body:saveBlog)=>{
       return post(query.SaveURL(),body)
     },
     getBlogService:(id:any)=>{

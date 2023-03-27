@@ -3,26 +3,26 @@ import {useParams} from "react-router-dom";
 import QueryService from '../../API/services/QueryService';
 import {dateConvert} from '../../helpers/helper'
 import RecentPost from '../../components/RecentPost'
+import {url} from '../../API/client/const'
 interface Blog {
   id:number,
   content:string,
   query:string,
   created_Date:string,
-  updated_date:string
+  updated_date:string,
+  image:string|null
 }
 
 export default function Blog(props:any) { 
   const id = useParams().id;
-  const [blog, setBlog] = useState<Blog>({id:0,content:'',query:'',created_Date:'',updated_date:''});
+  const [blog, setBlog] = useState<Blog>({id:0,content:'',query:'',created_Date:'',updated_date:'',image:null});
   useEffect(() => {
     blogDetails();
   }, []);
   let blogDetails = async()=>{
     let res = await QueryService.getBlogService(id);
       if (res.status === 200) {
-        console.log(res.data.data,'><><<')
         setBlog(res.data.data)
-        console.log(blog,'hi')
       } else {
         return console.error("something went wrong");
       }
@@ -39,14 +39,14 @@ export default function Blog(props:any) {
           <article className="blog-details">
 
             <div className="post-img">
-              <img src="assets/img/blog/blog-1.jpg" alt="" className="img-fluid"/>
+              <img src={blog.image?url+'/'+blog.image:'../../public/images/default.jpg'} alt="" className="img-fluid"/>
             </div>
 
             <h2 className="title">{blog.query}</h2>
 
             <div className="meta-top">
               <ul>
-                <li className="d-flex align-items-center"><i className="bi bi-person"></i> <a href="blog-details.html">Admin</a></li>
+                <li className="d-flex align-items-center"><i className="bi bi-person"></i> <a href="blog-details.html">ChatGPT</a></li>
                 <li className="d-flex align-items-center"><i className="bi bi-clock"></i> <a href="blog-details.html"><time >{dateConvert(blog.created_Date)}</time></a></li>
                 <li className="d-flex align-items-center"><i className="bi bi-chat-dots"></i> <a href="blog-details.html">0 Comments</a></li>
               </ul>
@@ -54,21 +54,6 @@ export default function Blog(props:any) {
             <div className="content" dangerouslySetInnerHTML={{ __html: blog.content }}>
 
             </div>
-
-            {/* <div className="meta-bottom">
-              <i className="bi bi-folder"></i>
-              <ul className="cats">
-                <li><a href="#">Business</a></li>
-              </ul>
-
-              <i className="bi bi-tags"></i>
-              <ul className="tags">
-                <li><a href="#">Creative</a></li>
-                <li><a href="#">Tips</a></li>
-                <li><a href="#">Marketing</a></li>
-              </ul>
-            </div> */}
-
           </article>
 
           <div className="post-author d-flex align-items-center">
